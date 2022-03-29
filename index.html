@@ -1,0 +1,423 @@
+
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>CVC: Contrastive Learning for Non-parallel Voice Conversion</title>
+  <link rel="stylesheet" type="text/css" href="https://tinglok.netlify.com/files/cvc/resources/stylesheet.css">
+  <style type="text/css">
+a:link,a:visited{
+ text-decoration:none;
+}
+a:hover{
+ text-decoration:underline;
+}
+</style>
+</head>
+
+<body>
+  <div style="margin-right: auto;margin-left: auto; margin-top: 30px; margin-bottom: 100px; width: 70%;">
+    <div style="text-align: center;">
+      <h1>CVC: Contrastive Learning for Non-parallel Voice Conversion</h1>
+    </div>
+
+    <div style="text-align: center;">
+      <big><a href="https://tinglok.netlify.app/"><font color="black">Tingle Li</font></a><sup>1,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/yichen-liu-751804176/"><font color="black">Yichen Liu</font></a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/huchenxucs"><font color="black">Chenxu Hu</font></a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://people.csail.mit.edu/hangzhao/"><font color="black">Hang Zhao</font></a><sup>1,3</sup><br><sup>1</sup>IIIS, Tsinghua University&nbsp;&nbsp;<sup>2</sup>Zhejiang University<br><sup>3</sup>Shanghai Qi Zhi Institute</big><br>
+	    <a onclick="ga('send', 'event', 'link', 'download', 'paper-main');" href="https://arxiv.org/pdf/2011.00782.pdf" target="_blank">[PDF]</a>
+      <a onclick="ga('send', 'event', 'link', 'download', 'paper-main');" href="https://github.com/Tinglok/CVC" target="_blank">[Code]</a>
+    </div>
+
+   	<br><br>
+    <center>
+    <img src="https://tinglok.netlify.com/files/cvc/demo_examples/CVC.jpg" width="60%" >
+    </center>
+    <p> 
+      <!-- <b>Interspeech2020:</b> -->
+      This webpage is to show some listening examples for our proposed CVC and the baseline CycleGAN-VC<sup>[1]</sup> and VAE-VC<sup>[2]</sup>. Compared to previous CycleGAN-based methods, CVC only requires an efficient one-way GAN training by taking the advantage of contrastive learning. When it comes to nonparallel one-to-one voice conversion, CVC is on par or better than CycleGAN and VAE while effectively reducing training time. CVC further demonstrates superior performance in many-to-one voice conversion, enabling the conversion from unseen speakers.
+    </p>
+
+    <br>
+	<h2>3-Minutes Demo Video</h2>
+	<center>
+  <iframe width="980" height="555"
+    src="https://www.youtube.com/embed/bIxrmISaqbQ">
+  </iframe>
+	</center>
+	</video>
+    <h2>One-to-one Voice Conversion</h2>
+    <p></p>
+    <p></p>
+	<h3> Type: </h3>
+	<ol>
+	    <li>F-F: female-female conversion </li>
+      <li>F-M: female-male conversion </li>
+  		<li>M-M: male-male conversion </li>
+  		<li>M-F: male-female conversion </li>
+	</ol>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Source</th>
+          <th>Proposed CVC</th>
+          <th>CycleGAN-VC<sup>[1]</sup></th>
+          <th>VAE-VC<sup>[2]</sup></th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+		  <td> F-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p225_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p225_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p225_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+		  <td> F-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p225_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p225_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p225_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+		  <td> M-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p270_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p270_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p270_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+		  <td> M-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p270_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p270_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p270_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <h2>Many-to-one conversion</h2>
+    <p></p>
+    <p></p>
+  <h3> Type: </h3>
+  <ol>
+      <li>F-F: female-female conversion </li>
+      <li>F-M: female-male conversion </li>
+      <li>M-M: male-male conversion </li>
+      <li>M-F: male-female conversion </li>
+  </ol>
+
+  <h3>Seen-source-speaker to seen-target-speaker conversion:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Source</th>
+          <th>Proposed CVC</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+      <td> F-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p261_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p261_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> F-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p225_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> F-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p261_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p261_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> F-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p225_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p227_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p227_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p270_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p227_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p227_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p270_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  <h3>Unseen-source-speaker to seen-target-speaker conversion:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Source</th>
+          <th>Proposed CVC</th>
+          <th>CycleGAN-VC<sup>[1]</sup></th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+      <td> F-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p244_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p244_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p244_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> F-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p244_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p244_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p244_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p252_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p252_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p252_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p252_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p252_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p252_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <h3>Compared to one-to-one proposed CVC:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Source</th>
+          <th>CVC Many</th>
+          <th>CVC</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+      <td> F-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p225_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p225_001_FF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> F-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p225_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p225_001_FM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-M</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p270_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p270_001_MM.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      <td> M-F</td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/many/p270_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p270_001_MF.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <h2>Reference</h2>
+    <p></p>
+    <p>[1] T. Kaneko, H. Kameoka, K. Tanaka, and N. Hojo, “CycleGAN-VC3: Examining and Improving CycleGAN-VCs for Mel-spectrogram Conversion,” in Interspeech, 2020, pp. 2017–2021.</p>
+    <p>[2] C-C. Hsu, H-T. Hwang, Y-C. Wu, Y. Tsao, and H-M. Wang, “Voice conversion from non-parallel corpora using variational auto-encoder,” in APSIPA, 2016, pp. 1–6.</p>
+  </div>
+
+</body>
+
+</html>
