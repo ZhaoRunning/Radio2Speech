@@ -35,14 +35,14 @@ a:hover{
     </p>
 
     <br>
-	<h2>1. A 3-Minutes Demo Video</h2>
+	<h2>Video</h2>
 	<center>
   <iframe width="980" height="555"
     src="https://www.youtube.com/embed/bIxrmISaqbQ">
   </iframe>
 	</center>
 	</video>
-    <h2>2. Speech Recovery Samples</h2>
+    <h2>Speech Recovery Samples</h2>
     <p></p>
     <p></p>
 	<h3> (1) Quiet Scenario: </h3>
@@ -55,84 +55,80 @@ a:hover{
     <table>
       <thead>
         <tr>
-          <th>Type</th>
-          <th>Source</th>
-          <th>Proposed CVC</th>
-          <th>CycleGAN-VC<sup>[1]</sup></th>
-          <th>VAE-VC<sup>[2]</sup></th>
-          <th>Target</th>
+          <th>Groud Truth</th>
+          <th>Mcirophone</th>
+          <th>WaveEar<sup>[1]</sup></th>
+          <th>Radio2Speech (Ours)</th>
         </tr>
       </thead>
       <tbody>
-		  <td> F-F</td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+              <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p225_001_FF.wav"
+              <source src="LJSpeech samples/Quiet/Microphone/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p225_001_FF.wav"
+              <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p225_001_FF.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+              <source src="LJSpeech samples/Quiet/Ours/LJ048-0049.wav"
                 type="audio/wav"></audio></td>
         </tr>
 
-		  <td> F-M</td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p225_001.wav"
+              <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p225_001_FM.wav"
+              <source src="LJSpeech samples/Quiet/Microphone/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p225_001_FM.wav"
+              <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p225_001_FM.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+              <source src="LJSpeech samples/Quiet/Ours/LJ048-0128.wav"
                 type="audio/wav"></audio></td>
         </tr>
 
-		  <td> M-M</td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+              <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p270_001_MM.wav"
+              <source src="LJSpeech samples/Quiet/Microphone/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p270_001_MM.wav"
+              <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p270_001_MM.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p256_001.wav"
+              <source src="LJSpeech samples/Quiet/Ours/LJ048-0225.wav"
                 type="audio/wav"></audio></td>
         </tr>
 
-		  <td> M-F</td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/source/p270_001.wav"
+              <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/proposed/p270_001_MF.wav"
+              <source src="LJSpeech samples/Quiet/Microphone/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/cycle/p270_001_MF.wav"
+              <source src="LJSpeech samples/Quiet/WaveEar/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/vae/p270_001_MF.wav"
+              <source src="LJSpeech samples/Quiet/Ours/LJ048-0011.wav"
+                type="audio/wav"></audio></td>
+        </tr>
+
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="https://tinglok.netlify.com/files/cvc/demo_examples/target/p228_001.wav"
+              <source src="LJSpeech samples/Quiet/Microphone/LJ048-0083.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="LJSpeech samples/Quiet/WaveEar/LJ048-0083.wav"
+                type="audio/wav"></audio></td>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+              <source src="LJSpeech samples/Quiet/Ours/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
         </tr>
 
