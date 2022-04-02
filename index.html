@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Radio2Speech: High Quality Speech Recovery from Radio Frequency Signal</title>
+  <title>Radio2Speech: High Quality Speech Recovery from Radio Frequency Signals</title>
   <link rel="stylesheet" type="text/css" href="https://tinglok.netlify.com/files/cvc/resources/stylesheet.css">
   <style type="text/css">
 a:link,a:visited{
@@ -42,6 +42,7 @@ a:hover{
   </iframe>
 	</center>
 	</video>
+
     <h2>Speech Recovery Samples</h2>
     <p></p>
     <p></p>
@@ -135,25 +136,17 @@ a:hover{
       </tbody>
     </table>
 
-<!--     <h2> (2) Many-to-one conversion</h2> -->
+
     <p></p>
     <p></p>
   <h3>(2) Noisy Scenario</h3>
-<!--   <ol>
-      <li>F-F: female-female conversion </li>
-      <li>F-M: female-male conversion </li>
-      <li>M-M: male-male conversion </li>
-      <li>M-F: male-female conversion </li>
-  </ol>
-
-  <h3>Seen-source-speaker to seen-target-speaker conversion:</h3> -->
     <table>
       <thead>
         <tr>
-          <th>Type</th>
-          <th>Source</th>
-          <th>Proposed CVC</th>
-          <th>Target</th>
+          <th>Groud Truth (8KHz)</th>
+          <th>Mcirophone</th>
+          <th>WaveEar<sup>[1]</sup></th>
+          <th>Radio2Speech (Ours)</th>
         </tr>
       </thead>
       <tbody>
@@ -235,11 +228,10 @@ a:hover{
     <table>
       <thead>
         <tr>
-          <th>Type</th>
-          <th>Source</th>
-          <th>Proposed CVC</th>
-          <th>CycleGAN-VC<sup>[1]</sup></th>
-          <th>Target</th>
+          <th>Groud Truth (8KHz)</th>
+          <th>Mcirophone</th>
+          <th>WaveEar<sup>[1]</sup></th>
+          <th>Radio2Speech (Ours)</th>
         </tr>
       </thead>
       <tbody>
@@ -321,8 +313,7 @@ a:hover{
 
     <h2>Reference</h2>
     <p></p>
-    <p>[1] T. Kaneko, H. Kameoka, K. Tanaka, and N. Hojo, “CycleGAN-VC3: Examining and Improving CycleGAN-VCs for Mel-spectrogram Conversion,” in Interspeech, 2020, pp. 2017–2021.</p>
-    <p>[2] C-C. Hsu, H-T. Hwang, Y-C. Wu, Y. Tsao, and H-M. Wang, “Voice conversion from non-parallel corpora using variational auto-encoder,” in APSIPA, 2016, pp. 1–6.</p>
+    <p>[1] Chenhan Xu, Zhengxiong Li, Hanbin Zhang, Aditya Singh Rathore, Huining Li, Chen Song, Kun Wang, and Wenyao Xu. 2019. WaveEar: Exploring a mmWave-based Noise-resistant Speech Sensing for Voice-User Interface. In Proceedings of the 17th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys),2019,pp. 14–26.</p>
   </div>
 
 </body>
