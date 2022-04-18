@@ -1,5 +1,5 @@
 
-<html>
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,15 +22,24 @@ a:hover{
     </div>
 
     <div style="text-align: center;">
-      <big><font color="black">Running Zhao</font></a><sup>1,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">Jiangtao Yu</font></a><sup>2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://tinglok.netlify.app/"><font color="black">Tingle Li</font></a><sup>2,3</sup><br><a href="http://people.csail.mit.edu/hangzhao/"><font color="black">Hang Zhao</font></a><sup>2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.eee.hku.hk/~iotlab/EdithNgai.html"><font color="black">Edith C.H. Ngai</font></a><sup>1</sup><br><sup>1</sup>The University of Hong Kong&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup>IIIS, Tsinghua University&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>3</sup>Shanghai Qi Zhi Institute</big><br>
+      <big><font color="black">Running Zhao</font></a><sup>1,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <font color="black">Jiangtao Yu</font></a><sup>2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://tinglok.netlify.app/"><font color="black">Tingle Li</font></a><sup>2,3</sup>
+          <br><a href="http://people.csail.mit.edu/hangzhao/"><font color="black">Hang Zhao</font></a><sup>2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://www.eee.hku.hk/~iotlab/EdithNgai.html"><font color="black">Edith C.H. Ngai</font></a><sup>1</sup>
+          <br><sup>1</sup>The University of Hong Kong&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup>
+          IIIS, Tsinghua University&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <sup>3</sup>Shanghai Qi Zhi Institute</big><br>
     </div>
 
    	<br><br>
     <center>
-    	<table><tr>
-    	<img src="usecase.png" width="45%" > &nbsp;&nbsp;
-	<img src="structure.png" width="53%" >
-	</tr></table>
+    	<table>
+            <tr>
+    	        <img src="figures/usecase.png" width="40%" >
+	            <img src="figures/structure.png" width="53%" >
+	        </tr>
+        </table>
     </center>
     <p> 
       <!-- <b>Interspeech2020:</b> -->
@@ -47,36 +56,146 @@ a:hover{
 	<h2>Video</h2>
 	<center>
   <iframe width="980" height="555"
-    src="video.mp4">
+    src="videos/video.mp4">
   </iframe>
 	</center>
 	</video>
 
-    <h2>Speech Recovery Samples</h2>
-    	<p>
-	   This section provides some reference and recovered speech samples for readers to better evaluate our reconstructed speeches. 
-	   We recommend that listeners use headphones for best audio experience.
-           All of the following speech samples were unseen during tranining, and the results are not cherry-picked. 
-	</p>
+      <br>
+      <br>
+      <h2>Speech Recovered from Radio2Speech</h2>
+      <p>
+          Some speech examples recovered from Radio2Speech are show below.
+          They are recovered from the data collected in quiet, noisy and soundproof scenario (see experimental scenarios).
+          The corresponding source speeches from LJSpeech are also provided for listeners to refer to.
+      </p>
 
-	<h3> (1) Quiet Scenario: </h3>
-        	<p>
-   	 	The speech samples in this section are collected in quiet scenario or recovered from the data collected in quiet scenario. 
-		The first five samples are from LJSpeech dataset (i.e., LJ047-0049, LJ047-0128, LJ047-0225, LJ048-0011, LJ048-0083), 
-		and the last three samples are from TIMIT dataset (i.e., FAEM0/SX42, MGXP0/SX97, MTWH1/SX72).
-		</p>
+<!--      <h3> (1) Quiet Scenario</h3>-->
+<!--      <p>-->
+<!--          The speech samples in this section are collected in quiet scenario or recovered from the data collected in quiet scenario.-->
+<!--      </p>-->
+
+      <table>
+          <thead>
+          <tr>
+              <th>Experimental scenario</th>
+              <th>Source speech (8KHz)</th>
+              <th>Speech recovered from Radio2Speech</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr>
+              <td><img src="represent fig_audio/Quiet.png" width="380" height="230"></td>
+              <td><img src="represent fig_audio/quiet_show_gt.png" width="90%" ></td>
+              <td><img src="represent fig_audio/quiet_show_ours.png" width="90%" ></td>
+          </tr>
+          <tr>
+              <td>Quiet scenario</td>
+              <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
+                      <source src="represent fig_audio/quiet_gt_LJ047-0064.wav" type="audio/wav"></audio>
+              </td>
+              <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
+                      <source src="represent fig_audio/quiet_ours_LJ047-0064.wav" type="audio/wav"></audio>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+
+<!--      <h3> (2) Noisy Scenario</h3>-->
+<!--      <p>-->
+<!--          The speech samples in this section are collected in noisy scenario or recovered from the data collected in noisy scenario.-->
+<!--      </p>-->
+      <br>
+      <br>
+      <table>
+          <thead>
+          <tr>
+              <th>Experimental scenario</th>
+              <th>Source speech (8KHz)</th>
+              <th>Speech recovered from Radio2Speech</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr>
+              <td><img src="represent fig_audio/Noisy.png" width="380" height="230"></td>
+              <td><img src="represent fig_audio/noisy_show_gt.png" width="90%" ></td>
+              <td><img src="represent fig_audio/noisy_show_ours.png" width="90%" ></td>
+          </tr>
+          <tr>
+              <td>Noisy scenario</td>
+              <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
+                      <source src="represent fig_audio/noisy_gt_LJ047-0053.wav" type="audio/wav"></audio>
+              </td>
+              <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
+                      <source src="represent fig_audio/noisy_ours_LJ047-0053.wav" type="audio/wav"></audio>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+
+<!--      <h3> (3) Soundproof Scenario</h3>-->
+<!--      <p>-->
+<!--          The speech samples in this section are collected in soundproof scenario or recovered from the data collected in soundproof scenario.-->
+<!--      </p>-->
+      <br>
+      <br>
+      <table>
+          <thead>
+          <tr>
+              <th>Experimental scenario</th>
+              <th>Source speech (8KHz)</th>
+              <th>Speech recovered from Radio2Speech</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr>
+              <td><img src="represent fig_audio/Soundproof.png" width="380" height="230"></td>
+              <td><img src="represent fig_audio/soundproof_show_gt.png" width="90%" ></td>
+              <td><img src="represent fig_audio/soundproof_show_ours.png" width="90%"></td>
+          </tr>
+          <tr>
+              <td>Soundproof scenario</td>
+              <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
+                      <source src="represent fig_audio/soundproof_gt_LJ047-0071.wav" type="audio/wav"></audio>
+              </td>
+              <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
+                      <source src="represent fig_audio/soundproof_ours_LJ047-0071.wav" type="audio/wav"></audio>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+
+      <br>
+      <br>
+      <h2>Speech Recovery Results</h2>
+      <p>
+          This section provides more reference and recovered speech samples for readers to better evaluate our reconstructed speeches.
+          We recommend that listeners use headphones for best audio experience.
+          All of the following speech samples were unseen during training, and the results were selected at random.
+      </p>
+
+	<h3> (1) Quiet Scenario</h3>
+      <p>
+          The speech samples in this section are collected in quiet scenario or recovered from the data collected in quiet scenario.
+          The first five samples are from LJSpeech dataset (i.e., LJ047-0049, LJ047-0128, LJ047-0225, LJ048-0011, LJ048-0083),
+          and the last three samples are from TIMIT dataset (i.e., FAEM0/SX42, MGXP0/SX97, MTWH1/SX72).
+      </p>
 
     <table>
       <thead>
         <tr>
-          <th>Groud Truth (8KHz)</th>
+          <th>Source speech (8KHz)</th>
           <th>Mcirophone</th>
           <th>WaveEar<sup>[1]</sup></th>
           <th>Radio2Speech (Ours)</th>
         </tr>
       </thead>
+
       <tbody>
-	      
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
@@ -89,8 +208,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ours/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
@@ -103,8 +223,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ours/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
@@ -117,8 +238,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ours/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
@@ -131,8 +253,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ours/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
@@ -145,8 +268,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Quiet/Ours/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Quiet/Ground truth/FAEM0/SX42.wav"
                 type="audio/wav"></audio></td>
@@ -159,8 +283,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Quiet/Ours/FAEM0/SX42.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Quiet/Ground truth/MGXP0/SX97.wav"
                 type="audio/wav"></audio></td>
@@ -173,8 +298,9 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Quiet/Ours/MGXP0/SX97.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Quiet/Ground truth/MTWH1/SX72.wav"
                 type="audio/wav"></audio></td>
@@ -187,14 +313,11 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Quiet/Ours/MTWH1/SX72.wav"
                 type="audio/wav"></audio></td>
-        </tr>
+      </tr>
 
       </tbody>
     </table>
 
-
-    <p></p>
-    <p></p>
   	<h3>(2) Noisy Scenario</h3>
         	<p>
    	 	The speech samples in this section are collected in noisy scenario or recovered from the data collected in noisy scenario. 
@@ -204,15 +327,15 @@ a:hover{
     <table>
       <thead>
         <tr>
-          <th>Groud Truth (8KHz)</th>
+          <th>Source speech (8KHz)</th>
           <th>Mcirophone</th>
           <th>WaveEar<sup>[1]</sup></th>
           <th>Radio2Speech (Ours)</th>
         </tr>
       </thead>
       <tbody>
-	      
-  	  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+      <tr>
+          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -224,8 +347,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ours/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
@@ -238,8 +361,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ours/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
@@ -252,8 +375,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ours/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ground truth/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
@@ -266,8 +389,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ours/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ground truth/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
@@ -280,8 +403,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Noisy/Ours/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Noisy/Ground truth/FAEM0/SX42.wav"
                 type="audio/wav"></audio></td>
@@ -294,8 +417,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Noisy/Ours/FAEM0/SX42.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Noisy/Ground truth/MGXP0/SX97.wav"
                 type="audio/wav"></audio></td>
@@ -308,8 +431,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Noisy/Ours/MGXP0/SX97.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Noisy/Ground truth/MTWH1/SX72.wav"
                 type="audio/wav"></audio></td>
@@ -322,8 +445,7 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Noisy/Ours/MTWH1/SX72.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
       </tbody>
     </table>
 
@@ -337,14 +459,14 @@ a:hover{
     <table>
       <thead>
         <tr>
-          <th>Groud Truth (8KHz)</th>
+          <th>Source speech (8KHz)</th>
           <th>Mcirophone</th>
           <th>WaveEar<sup>[1]</sup></th>
           <th>Radio2Speech (Ours)</th>
         </tr>
       </thead>
       <tbody>
-	      
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
@@ -357,8 +479,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ours/LJ047-0049.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
@@ -371,8 +493,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ours/LJ047-0128.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
@@ -385,8 +507,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ours/LJ047-0225.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ground truth/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
@@ -399,8 +521,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ours/LJ048-0011.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ground truth/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
@@ -413,8 +535,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="LJSpeech samples/Soundproof/Ours/LJ048-0083.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Soundproof/Ground truth/FAEM0/SX42.wav"
                 type="audio/wav"></audio></td>
@@ -427,8 +549,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Soundproof/Ours/FAEM0/SX42.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Soundproof/Ground truth/MGXP0/SX97.wav"
                 type="audio/wav"></audio></td>
@@ -441,8 +563,8 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Soundproof/Ours/MGXP0/SX97.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
+      <tr>
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Soundproof/Ground truth/MTWH1/SX72.wav"
                 type="audio/wav"></audio></td>
@@ -455,8 +577,7 @@ a:hover{
           <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
               <source src="TIMIT samples/Soundproof/Ours/MTWH1/SX72.wav"
                 type="audio/wav"></audio></td>
-        </tr>
-
+      </tr>
       </tbody>
     </table>
 
