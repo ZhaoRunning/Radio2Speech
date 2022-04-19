@@ -55,19 +55,17 @@ a:hover{
     <br>
 	<h2>Video</h2>
 	<center>
-  <iframe width="980" height="555"
-    src="videos/video.mp4">
-  </iframe>
+  <iframe width="980" height="555" src="videos/video.mp4"></iframe>
 	</center>
-	</video>
 
       <br>
       <br>
       <h2>Speech Recovered from Radio2Speech</h2>
       <p>
-          Some speech examples recovered from Radio2Speech are show below.
-          They are recovered from the data collected in quiet, noisy and soundproof scenario (see experimental scenarios).
-          The corresponding source speeches from LJSpeech are also provided for listeners to refer to.
+          Some speech examples recovered from Radio2Speech are show below, and they are recovered from the data
+          collected in quiet, noisy and soundproof scenarios.
+          The below videos show the experimental scenarios of RF data collection, and videos are recorded by a mobile phone.
+          The corresponding source speeches from LJSpeech (LJ047-0073) are also provided for listeners to refer to.
       </p>
 
 <!--      <h3> (1) Quiet Scenario</h3>-->
@@ -78,25 +76,26 @@ a:hover{
       <table>
           <thead>
           <tr>
-              <th>Experimental scenario</th>
-              <th>Source speech (8KHz)</th>
+              <th>Experimental scenario (video)</th>
+              <th>Source speech (LJ047-0073, 8KHz)</th>
               <th>Speech recovered from Radio2Speech</th>
           </tr>
           </thead>
 
           <tbody>
           <tr>
-              <td><img src="represent fig_audio/Quiet.png" width="380" height="230"></td>
-              <td><img src="represent fig_audio/quiet_show_gt.png" width="90%" ></td>
+              <td><iframe width="380" height="230" src="videos/Quiet.mp4"></iframe></td>
+<!--              <td><img src="represent fig_audio/Quiet.png" width="380" height="230"></td>-->
+              <td><img src="represent fig_audio/gt_show.png" width="90%" ></td>
               <td><img src="represent fig_audio/quiet_show_ours.png" width="90%" ></td>
           </tr>
           <tr>
               <td>Quiet scenario</td>
               <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
-                      <source src="represent fig_audio/quiet_gt_LJ047-0064.wav" type="audio/wav"></audio>
+                      <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
               </td>
               <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
-                      <source src="represent fig_audio/quiet_ours_LJ047-0064.wav" type="audio/wav"></audio>
+                      <source src="represent fig_audio/quiet_ours_LJ047-0073.wav" type="audio/wav"></audio>
               </td>
           </tr>
           </tbody>
@@ -111,25 +110,25 @@ a:hover{
       <table>
           <thead>
           <tr>
-              <th>Experimental scenario</th>
-              <th>Source speech (8KHz)</th>
+              <th>Experimental scenario (video)</th>
+              <th>Source speech (LJ047-0073, 8KHz)</th>
               <th>Speech recovered from Radio2Speech</th>
           </tr>
           </thead>
 
           <tbody>
           <tr>
-              <td><img src="represent fig_audio/Noisy.png" width="380" height="230"></td>
-              <td><img src="represent fig_audio/noisy_show_gt.png" width="90%" ></td>
+              <td><iframe width="380" height="230" src="videos/Noisy.mp4"></iframe></td>
+              <td><img src="represent fig_audio/gt_show.png" width="90%" ></td>
               <td><img src="represent fig_audio/noisy_show_ours.png" width="90%" ></td>
           </tr>
           <tr>
               <td>Noisy scenario</td>
               <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
-                      <source src="represent fig_audio/noisy_gt_LJ047-0053.wav" type="audio/wav"></audio>
+                      <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
               </td>
               <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
-                      <source src="represent fig_audio/noisy_ours_LJ047-0053.wav" type="audio/wav"></audio>
+                      <source src="represent fig_audio/noisy_ours_LJ047-0073.wav" type="audio/wav"></audio>
               </td>
           </tr>
           </tbody>
@@ -144,25 +143,25 @@ a:hover{
       <table>
           <thead>
           <tr>
-              <th>Experimental scenario</th>
-              <th>Source speech (8KHz)</th>
+              <th>Experimental scenario (video)</th>
+              <th>Source speech (LJ047-0073, 8KHz)</th>
               <th>Speech recovered from Radio2Speech</th>
           </tr>
           </thead>
 
           <tbody>
           <tr>
-              <td><img src="represent fig_audio/Soundproof.png" width="380" height="230"></td>
-              <td><img src="represent fig_audio/soundproof_show_gt.png" width="90%" ></td>
+              <td><iframe width="380" height="230" src="videos/Soundproof.mp4"></iframe></td>
+              <td><img src="represent fig_audio/gt_show.png" width="90%" ></td>
               <td><img src="represent fig_audio/soundproof_show_ours.png" width="90%"></td>
           </tr>
           <tr>
               <td>Soundproof scenario</td>
               <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
-                      <source src="represent fig_audio/soundproof_gt_LJ047-0071.wav" type="audio/wav"></audio>
+                      <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
               </td>
               <td><audio controls class="audio-player" preload="metadata" style="width: 280px;">
-                      <source src="represent fig_audio/soundproof_ours_LJ047-0071.wav" type="audio/wav"></audio>
+                      <source src="represent fig_audio/soundproof_ours_LJ047-0073.wav" type="audio/wav"></audio>
               </td>
           </tr>
           </tbody>
@@ -172,7 +171,7 @@ a:hover{
       <br>
       <h2>Speech Recovery Results</h2>
       <p>
-          This section provides more reference and recovered speech samples for readers to better evaluate our reconstructed speeches.
+          This section provides more reference and recovered speech samples for readers to better evaluate our recovered speeches.
           We recommend that listeners use headphones for best audio experience.
           All of the following speech samples were unseen during training, and the results were selected at random.
       </p>
