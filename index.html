@@ -1,661 +1,733 @@
-
+<!Doctype html>
 <html lang="en">
+    <head>
+        <title>Radio2Speech: High Quality Speech Recovery from Radio Frequency Signals</title>
 
-<head>
-  <meta http-equiv="Content-Type" name="viewport" content="text/html width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no; charset=UTF-8">
-  <title>Radio2Speech: High Quality Speech Recovery from Radio Frequency Signals</title>
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-  <style type="text/css">
-a:link,a:visited{
- text-decoration:none;
-}
-a:hover{
- text-decoration:underline;
-}
-  </style>
-</head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
-  <div style="margin-right: auto;margin-left: auto; margin-top: 30px; margin-bottom: 100px; width: 70%;">
-    <div style="text-align: center;">
-      <h1>Radio2Speech: High Quality Speech Recovery from Radio Frequency Signals</h1>
-    </div>
+        <link rel="stylesheet" type="text/css" href="style_project_page.css?cache=7754391418498779889">
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="https://unpkg.com/@glidejs/glide"></script>
+        <style type="text/css">
+            body{
+              min-width:600px;
+              max-width:100%;
+            }
+            .side-text {
+                width:60%;
+                display:inline-block;
+                vertical-align:top;
+            }
+            .side-image {
+                width: 38%;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .controls {
+                margin-bottom: 10px;
+            }
+            .left-controls {
+                display: inline-block;
+                vertical-align: top;
+                width: 80%;
+            }
+            .right-controls {
+                display: inline-block;
+                vertical-align: top;
+                width: 19%;
+                text-align: right;
+            }
+            .render_window {
+                display: inline-block;
+                vertical-align: middle;
+                box-shadow: 1px 0px 5px black;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                width: calc(33% - 10px);
+            }
+            .progress {
+                background: #666;
+                position: relative;
+                height: 5px;
+                margin-bottom: -5px;
+                display: none;
+            }
+            .glide__slide:hover {cursor: grab;}
+            .glide__slide:active {cursor: grabbing;}
+            .glide__slide img {width: 90%;}
+            .glide__bullets {
+                text-align: center;
+            }
+            .glide__bullet--active {
+                color: #aaa; 
+            }
 
-    <div style="text-align: center;">
-      <big><font color="black">Running Zhao</font></a><sup>1,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://binpeach.github.io/"><font color="black">Jiangtao Yu</font></a><sup>2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://tinglok.netlify.app/"><font color="black">Tingle Li</font></a><sup>2,3</sup>
-          <br><a href="http://people.csail.mit.edu/hangzhao/"><font color="black">Hang Zhao</font></a><sup>2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://www.eee.hku.hk/~iotlab/EdithNgai.html"><font color="black">Edith C.H. Ngai</font></a><sup>1</sup>
-          <br><sup>1</sup>The University of Hong Kong&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup>
-          IIIS, Tsinghua University&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <sup>3</sup>Shanghai Qi Zhi Institute</big><br>
-    </div>
+            @media (max-width: 400px) {
+                .render_window {
+                    display: block;
+                    width: 90%;
+                    margin: 10px auto;
+                }
+            }
+            @media (max-width: 700px) {
+                .side-image {
+                    display: block;
+                    width: 80%;
+                    margin: 10px auto;
+                }
+                .side-text {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="topnav" id="homepage">
+            <div>
+                <a href="#homepage" ><strong>Radio2Speech</strong></a>
+                <a href="#introduction" >Introduction</a>
+                <a href="#video" >Video</a>
+                <a href="#demo" >Demo</a>
+                <a href="#results" >Result</a>
+            </div>
+        </div>
+        <div class="section">
+            <h1 class="project-title">
+                Radio2Speech: High Quality Speech Recovery from Radio Frequency Signals
+            </h1>
+            <div class="authors">
+                <a>
+                    Running Zhao <sup>1,3</sup>
+                </a>
+                <a href=https://binpeach.github.io/>
+                    Jiangtao Yu <sup>2,3</sup>
+                </a>
+                <a href=https://tinglok.netlify.app/>
+                    Tingle Li <sup>2,3</sup>
+                </a>
+                <a href=http://people.csail.mit.edu/hangzhao/>
+                    Hang Zhao <sup>2,3</sup>
+                </a>
+                <a href=https://www.eee.hku.hk/~iotlab/EdithNgai.html>
+                    Edith C.H. Ngai <sup>1</sup>
+                </a>
+            </div>
 
-   	<br><br>
-    <center>
-    	<table>
-            <tr>
-    	        <img src="figures/usecase.png" width="40%" >
-	            <img src="figures/structure.png" width="53%" >
-	        </tr>
-        </table>
-    </center>
-    <p>
-      <!-- <b>Interspeech2020:</b> -->
-        Considering the microphone is easily affected by noise and soundproof materials, the radio frequency (RF) signal is a promising candidate to recover audio as it is immune to noise and can traverse many soundproof objects.
-        In this paper, we introduce Radio2Speech, a system that uses RF signals to recover speech of corpus with high quality. Radio2Speech can recover speech comparable to the quality of a microphone, advancing from recovering only single tone music or incomprehensible speech in existing approaches.
-        We use Radio UNet to accurately recover speech in time-frequency domain from the RF signal with limited frequency band. Also, we incorporate the neural vocoder to synthesize the speech waveform from the estimated time-frequency representation without using the contaminated phase.
-        Quantitative and qualitative evaluations show that in quiet, noisy and soundproof scenarios, Radio2Speech achieves state-of-the-art performance and is on par with a microphone that works in quiet scenarios.
-<!--	    <br/> This system transmits the mmWave frequency-modulated continuous wave (FMCW) signal to the loudspeaker, and parses the reflected signal for recovery.-->
-<!--	    Radio2Speech can recover speech comparable to the quality of a microphone, advancing from recovering only single tone music or incomprehensible speech in existing approaches.-->
-	    <br/> &nbsp; &nbsp; &nbsp; &nbsp;In this webpage, we show some reference speeches and recovered speeches.<!--  of our proposed Radio2Speech and WaveEar<sup>[1]</sup>. -->
-	    In quiet scenarios, Radio2Speech can recover high quality speech like a microphone.
-	    Since RF signals are not affected by the noise, our system is still able to recover high quality speech in noisy scenarios, while microphone almost fails.
-	    The existence of soundproof glass can make the microphone deaf, but RF signals can traverse occlusions. Thus, the speech recovered by Radio2Speech remains intelligible in soundproof scenarios.
-    </p>
+            <div class="affiliations">
+                <span><sup>1</sup> The University of Hong Kong</span>&nbsp;&nbsp;
+                <span><sup>2</sup> IIIS, Tsinghua University</span>&nbsp;&nbsp;
+                <span><sup>3</sup> Shanghai Qi Zhi Institute</span>
+            </div>
 
-    <br>
-	<h2>Video (3 minutes)</h2>
-	<center>
-  <video width="75%" controls>
-    <source src="videos/video.mp4" type="video/mp4">
-  </video>
-	</center>
+            <div class="project-conference">
+                INTERSPEECH 2022
+            </div>
 
-      <br>
-      <br>
-      <h2>Speech Recovered from Radio2Speech</h2>
-      <p>
-          Some speech examples recovered from Radio2Speech are show below, and they are recovered from the data
-          collected in quiet, noisy and soundproof scenarios.
-          The below videos show the experimental scenarios of RF data collection, and videos are recorded by a mobile phone.
-          The corresponding source speech from LJSpeech (LJ047-0073) are also provided for listeners to refer to.
-      </p>
+            <div class="project-icons">
+                <a>
+                    <i class="fa fa-file"></i> <br/>
+                    Paper
+                </a>
+                <a>
+                    <i class="fa fa-youtube-play"></i> <br/>
+                    Video
+                </a>
 
-<!--      <h3> (1) Quiet Scenario</h3>-->
-<!--      <p>-->
-<!--          The speech samples in this section are collected in quiet scenario or recovered from the data collected in quiet scenario.-->
-<!--      </p>-->
+            </div>
 
-      <table>
-          <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-          </colgroup>
+            <div id="introduction" class="teaser-image">
+                <p class="caption">
+                    Considering the microphone is easily affected by noise and soundproof materials, the radio frequency (RF)
+                    signal is a promising candidate to recover audio as it is immune to noise and can traverse many soundproof objects.
+                    In this paper, we introduce Radio2Speech, a system that uses RF signals to recover speech with high quality from the loudspeaker.
+                    Radio2Speech can recover speech comparable to the quality of a microphone, advancing from recovering only single tone music or incomprehensible speech in existing approaches.
+                    We use Radio UNet to accurately recover speech in time-frequency domain from the RF signal with limited frequency band.
+                    Also, we incorporate the neural vocoder to synthesize the speech waveform from the estimated time-frequency representation without using the contaminated phase.
+                    Quantitative and qualitative evaluations show that in quiet, noisy and soundproof scenarios, Radio2Speech
+                    achieves state-of-the-art performance and is on par with a microphone that works in quiet scenarios.
+                    <!--  <br/> &nbsp; &nbsp;&lt;!&ndash; In this webpage, we show some reference speeches and recovered speeches of our proposed Radio2Speech and WaveEar<sup>[1]</sup>. &ndash;&gt;-->
+                </p>
+                <img src="figures/overall.png" style="width:90%;">
+                <p class="caption">
+                    Millimeter wave (mmWave) radar transmits RF signals to the vibrating diaphragm of loudspeaker,
+                    while the reflected signals contain vibration characteristics associated with speech.
+                    Radio2Speech parses reflected RF signals to recover speech.
+                    In quiet scenarios, Radio2Speech can recover high quality speech like a microphone.
+                    Moreover, since RF signals are not affected by the noise, our system is still able to recover high quality speech in noisy scenarios, while microphone almost fails.
+                    The existence of soundproof materials can make the microphone deaf, but RF signals can traverse occlusions. Thus, the speech recovered by Radio2Speech remains intelligible in soundproof scenarios.
+                    As shown in the pipeline of Radio2Speech, the input RF signal is upsampled using the cubic spline interpolation, and then it is transformed into Mel spectrogram.
+                    The Radio UNet is proposed to recover the Mel spectrogram of the speech signal.
+                    Finally, the neural vocoder, Parallel WaveGAN, is employed to reconstruct the natural speech waveform from the estimated Mel spectrogram.
+                </p>
+            </div>
 
-          <thead>
-          <tr>
-              <th>Experimental scenario (video)</th>
-              <th>Source speech (8KHz)</th>
-              <th>Microphone (8KHz)</th>
-              <th>Speech recovered from Radio2Speech</th>
-          </tr>
-          </thead>
 
-          <tbody>
-          <tr>
-              <td>
-                <video width="100%" controls>
-                  <source src="videos/Quiet.mp4" type="video/mp4">
+            <div id="video" class="section-title">Video (3 minutes)</div>
+            <div class="video">
+                <video width="80%" controls>
+                    <source src="videos/video.mp4" type="video/mp4">
                 </video>
-                </td>
-              <td><img src="represent fig_audio/gt_show.png" width="100%"></td>
-              <td><img src="represent fig_audio/quiet_show_mic.png" width="100%" ></td>
-              <td><img src="represent fig_audio/quiet_show_ours.png" width="100%"></td>
-          </tr>
-          <tr>
-              <td>Quiet scenario</td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
+            </div>
+
+            <div id="demo" class="section-title">Speech Recovery Demo</div>
+            <p class="caption">
+                The below videos show the experimental scenarios (i.e., quiet, noisy and soundproof scenarios) of RF data collection,
+                and videos are recorded by a mobile phone.
+                The source speech (8KHz) from LJSpeech (LJ047-0073) are provided for listeners to refer to.
+                Speech examples recorded by the microphone and recovered by Radio2Speech are also show below,
+                and they are recorded in the corresponding scenarios or recovered from the data collected in the corresponding scenarios.
+                Moreover, spectrograms are presented to visualize the recovered speech.
+
+            </p>
+            <div class="content">
+                <!--                1 quiet scenario-->
+                <div class="row" >
+                    <div class="column"><p>Experimental scenario (video)</p></div>
+                    <div class="column"><p>Source speech</p></div>
+                    <div class="column"><p>Microphone</p></div>
+                    <div class="column"><p>Radio2Speech (Ours)</p></div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <video controls>
+                          <source src="videos/Quiet.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column"><img src="represent fig_audio/gt_show.png"></div>
+                    <div class="column"><img src="represent fig_audio/quiet_show_mic.png"></div>
+                    <div class="column"><img src="represent fig_audio/quiet_show_ours.png"></div>
+                </div>
+
+                <div class="row" >
+                    <div class="column" align="center">Quiet scenario</div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width:100%;">
                       <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
                       <source src="represent fig_audio/quiet_mic_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
                       <source src="represent fig_audio/quiet_ours_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-          </tr>
-          </tbody>
-      </table>
+                    </div>
+                </div>
+                <!--                2 noisy scenario-->
+                <div class="row">
+                    <div class="column">
+                        <video controls>
+                          <source src="videos/Noisy.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column"><img src="represent fig_audio/gt_show.png"></div>
+                    <div class="column"><img src="represent fig_audio/noisy_show_mic.png"></div>
+                    <div class="column"><img src="represent fig_audio/noisy_show_ours.png"></div>
+                </div>
 
-<!--      <h3> (2) Noisy Scenario</h3>-->
-<!--      <p>-->
-<!--          The speech samples in this section are collected in noisy scenario or recovered from the data collected in noisy scenario.-->
-<!--      </p>-->
-      <br>
-      <br>
-      <table>
-          <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-          </colgroup>
+                <div class="row" >
+                    <div class="column" align="center">Noisy scenario</div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
+                        <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
+                        <source src="represent fig_audio/noisy_mic_LJ047-0073.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
+                        <source src="represent fig_audio/noisy_ours_LJ047-0073.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <!--                3 noisy scenario-->
+                <div class="row">
+                    <div class="column">
+                        <video controls>
+                          <source src="videos/Soundproof.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column"><img src="represent fig_audio/gt_show.png"></div>
+                    <div class="column"><img src="represent fig_audio/soundproof_show_mic.png"></div>
+                    <div class="column"><img src="represent fig_audio/soundproof_show_ours.png"></div>
+                </div>
 
-          <thead>
-          <tr>
-              <th>Experimental scenario (video)</th>
-              <th>Source speech (8KHz)</th>
-              <th>Microphone (8KHz)</th>
-              <th>Speech recovered from Radio2Speech</th>
-          </tr>
-          </thead>
+                <div class="row" >
+                    <div class="column" align="center">Noisy scenario</div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
+                        <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
+                        <source src="represent fig_audio/soundproof_mic_LJ047-0073.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 100%;">
+                        <source src="represent fig_audio/soundproof_ours_LJ047-0073.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
 
-          <tbody>
-          <tr>
-              <td>
-                <video width="100%" controls>
-                  <source src="videos/Noisy.mp4" type="video/mp4">
-                </video>
-              </td>
-              <td><img src="represent fig_audio/gt_show.png" width="100%" ></td>
-              <td><img src="represent fig_audio/noisy_show_mic.png" width="100%" ></td>
-              <td><img src="represent fig_audio/noisy_show_ours.png" width="100%" ></td>
-          </tr>
-          <tr>
-              <td>Noisy scenario</td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
-                      <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
-                      <source src="represent fig_audio/noisy_mic_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
-                      <source src="represent fig_audio/noisy_ours_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-          </tr>
-          </tbody>
-      </table>
+            </div>
 
-<!--      <h3> (3) Soundproof Scenario</h3>-->
-<!--      <p>-->
-<!--          The speech samples in this section are collected in soundproof scenario or recovered from the data collected in soundproof scenario.-->
-<!--      </p>-->
-      <br>
-      <br>
-      <table>
-          <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-          </colgroup>
+            <div id="results" class="section-title">Speech Recovery Result</div>
+            <p class="caption">
+                This section presents the comparison results of speech recovery.
+                Some speech samples recovered from WaveEar and Radio2Speech (ours) and the corresponding speech samples
+                recorded by microphone are provided for readers to better evaluate our system.
+                The source speeches (8KHz) are also provided.
+                We recommend that listeners use headphones for best audio experience.
+                All of the following speech samples were unseen during training, and the results were selected at random.
+                The first five samples are from LJSpeech dataset (i.e., LJ047-0049, LJ047-0128, LJ047-0225, LJ048-0011, LJ048-0083),
+                and the last three samples are from TIMIT dataset (i.e., FAEM0/SX42, MGXP0/SX97, MTWH1/SX72).
+            </p>
+            <div class="content">
+                <p>
+                    (1) Quiet Scenario
+                </p>
+                <p class="caption">
+                    The speech samples in this section are collected in quiet scenario or recovered from the data collected in quiet scenario.
+                </p>
+                <div class="row" >
+                    <div class="column"><p>Source speech</p></div>
+                    <div class="column"><p>Microphone</p></div>
+                    <div class="column"><p>WaveEar</p></div>
+                    <div class="column"><p>Radio2Speech (Ours)</p></div>
+                </div>
+                <div class="row" >
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0049.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/Microphone/LJ047-0049_mic.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0049.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/Ours/LJ047-0049.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
 
-          <thead>
-          <tr>
-              <th>Experimental scenario (video)</th>
-              <th>Source speech (8KHz)</th>
-              <th>Microphone (8KHz)</th>
-              <th>Speech recovered from Radio2Speech</th>
-          </tr>
-          </thead>
+                <div class="row" >
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0128.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/Microphone/LJ047-0128_mic.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0128.wav" type="audio/wav"></audio>
+                    </div>
+                    <div class="column">
+                        <audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                        <source src="LJSpeech samples/Quiet/Ours/LJ047-0128.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
 
-          <tbody>
-          <tr>
-              <td>
-                <video width="100%" controls>
-                  <source src="videos/Soundproof.mp4" type="video/mp4">
-                  </video>
-              </td>
-              <td><img src="represent fig_audio/gt_show.png" width="100%" ></td>
-              <td><img src="represent fig_audio/soundproof_show_mic.png" width="100%" ></td>
-              <td><img src="represent fig_audio/soundproof_show_ours.png" width="100%"></td>
-          </tr>
-          <tr>
-              <td>Soundproof scenario</td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
-                      <source src="represent fig_audio/source_speech_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
-                      <source src="represent fig_audio/soundproof_mic_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-              <td><audio controls class="audio-player" preload="metadata" style="width: 260px;">
-                      <source src="represent fig_audio/soundproof_ours_LJ047-0073.wav" type="audio/wav"></audio>
-              </td>
-          </tr>
-          </tbody>
-      </table>
+                <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0225.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Quiet/Microphone/LJ047-0225_mic.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0225.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Quiet/Ours/LJ047-0225.wav"
+                        type="audio/wav"></audio></div>
+                </div>
 
-      <br>
-      <br>
-      <h2>Speech Recovery Results</h2>
-      <p>
-          This section provides more reference and recovered speech samples for readers to better evaluate our recovered speeches.
-          We recommend that listeners use headphones for best audio experience.
-          All of the following speech samples were unseen during training, and the results were selected at random.
-      </p>
+                <div class="row" >
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0011.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/Microphone/LJ048-0011_mic.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/WaveEar/LJ048-0011.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/Ours/LJ048-0011.wav"
+                            type="audio/wav"></audio></div>
+                </div>
+    
+                <div class="row" >
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0083.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/Microphone/LJ048-0083_mic.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/WaveEar/LJ048-0083.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Quiet/Ours/LJ048-0083.wav"
+                            type="audio/wav"></audio></div>
+                </div>
+    
+                <div class="row" >
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Ground truth/FAEM0/SX42.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Microphone/FAEM0/SX42.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/WaveEar/FAEM0/SX42.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Ours/FAEM0/SX42.wav"
+                            type="audio/wav"></audio></div>
+                </div>
+    
+                <div class="row" >
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Ground truth/MGXP0/SX97.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Microphone/MGXP0/SX97.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/WaveEar/MGXP0/SX97.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Ours/MGXP0/SX97.wav"
+                            type="audio/wav"></audio></div>
+                </div>
+    
+                <div class="row" >
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Ground truth/MTWH1/SX72.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Microphone/MTWH1/SX72.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/WaveEar/MTWH1/SX72.wav"
+                            type="audio/wav"></audio></div>
+                      <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Quiet/Ours/MTWH1/SX72.wav"
+                            type="audio/wav"></audio></div>
+                </div>
 
-	<h3> (1) Quiet Scenario</h3>
-      <p>
-          The speech samples in this section are collected in quiet scenario or recovered from the data collected in quiet scenario.
-          The first five samples are from LJSpeech dataset (i.e., LJ047-0049, LJ047-0128, LJ047-0225, LJ048-0011, LJ048-0083),
-          and the last three samples are from TIMIT dataset (i.e., FAEM0/SX42, MGXP0/SX97, MTWH1/SX72).
-      </p>
+                <p>
+                    (2) Noisy Scenario
+                </p>
+                <p class="caption">
+                    The speech samples in this section are collected in noisy scenario or recovered from the data collected in noisy scenario.
+                </p>
+                <div class="row" >
+                    <div class="column"><p>Source speech</p></div>
+                    <div class="column"><p>Microphone</p></div>
+                    <div class="column"><p>WaveEar</p></div>
+                    <div class="column"><p>Radio2Speech (Ours)</p></div>
+                </div>
+                <div class="row" >
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                              <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0049.wav"
+                                type="audio/wav"></audio>
+                    </div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                              <source src="LJSpeech samples/Noisy/Microphone/LJ047-0049_mic.wav"
+                                type="audio/wav"></audio>
+                    </div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                              <source src="LJSpeech samples/Noisy/WaveEar/LJ047-0049.wav"
+                                type="audio/wav"></audio>
+                    </div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                              <source src="LJSpeech samples/Noisy/Ours/LJ047-0049.wav"
+                                type="audio/wav"></audio>
+                    </div>
+                </div>
 
-    <table>
-        <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-        </colgroup>
-      <thead>
-        <tr>
-          <th>Source speech (8KHz)</th>
-          <th>Mcirophone</th>
-          <th>WaveEar<sup>[1]</sup></th>
-          <th>Radio2Speech (Ours)</th>
-        </tr>
-      </thead>
+                <div class="row" >
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0128.wav"
+                            type="audio/wav"></audio>
+                    </div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Microphone/LJ047-0128_mic.wav"
+                            type="audio/wav"></audio>
+                    </div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/WaveEar/LJ047-0128.wav"
+                            type="audio/wav"></audio>
+                    </div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ours/LJ047-0128.wav"
+                            type="audio/wav"></audio>
+                    </div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0225.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Microphone/LJ047-0225_mic.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/WaveEar/LJ047-0225.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ours/LJ047-0225.wav"
+                            type="audio/wav"></audio>
+                  </div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ground truth/LJ048-0011.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Microphone/LJ048-0011_mic.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/WaveEar/LJ048-0011.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ours/LJ048-0011.wav"
+                            type="audio/wav"></audio>
+                  </div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ground truth/LJ048-0083.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Microphone/LJ048-0083_mic.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/WaveEar/LJ048-0083.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="LJSpeech samples/Noisy/Ours/LJ048-0083.wav"
+                            type="audio/wav"></audio>
+                  </div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Ground truth/FAEM0/SX42.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Microphone/FAEM0/SX42.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/WaveEar/FAEM0/SX42.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Ours/FAEM0/SX42.wav"
+                            type="audio/wav"></audio>
+                  </div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Ground truth/MGXP0/SX97.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Microphone/MGXP0/SX97.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/WaveEar/MGXP0/SX97.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Ours/MGXP0/SX97.wav"
+                            type="audio/wav"></audio>
+                  </div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Ground truth/MTWH1/SX72.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Microphone/MTWH1/SX72.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/WaveEar/MTWH1/SX72.wav"
+                            type="audio/wav"></audio>
+                  </div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                          <source src="TIMIT samples/Noisy/Ours/MTWH1/SX72.wav"
+                            type="audio/wav"></audio>
+                  </div>
+              </div>
 
-      <tbody>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Microphone/LJ047-0049_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ours/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Microphone/LJ047-0128_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ours/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ground truth/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Microphone/LJ047-0225_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/WaveEar/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ours/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Microphone/LJ048-0011_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/WaveEar/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ours/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ground truth/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Microphone/LJ048-0083_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/WaveEar/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Quiet/Ours/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Ground truth/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Microphone/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/WaveEar/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Ours/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Ground truth/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Microphone/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/WaveEar/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Ours/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Ground truth/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Microphone/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/WaveEar/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Quiet/Ours/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-
-      </tbody>
-    </table>
-
-  	<h3>(2) Noisy Scenario</h3>
-        	<p>
-   	 	The speech samples in this section are collected in noisy scenario or recovered from the data collected in noisy scenario. 
-		The first five samples are from LJSpeech dataset (i.e., LJ047-0049, LJ047-0128, LJ047-0225, LJ048-0011, LJ048-0083), 
-		and the last three samples are from TIMIT dataset (i.e., FAEM0/SX42, MGXP0/SX97, MTWH1/SX72).
-		</p>
-    <table>
-        <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-        </colgroup>
-      <thead>
-        <tr>
-          <th>Source speech (8KHz)</th>
-          <th>Mcirophone</th>
-          <th>WaveEar<sup>[1]</sup></th>
-          <th>Radio2Speech (Ours)</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Microphone/LJ047-0049_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/WaveEar/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ours/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Microphone/LJ047-0128_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/WaveEar/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ours/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ground truth/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Microphone/LJ047-0225_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/WaveEar/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ours/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ground truth/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Microphone/LJ048-0011_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/WaveEar/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ours/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ground truth/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Microphone/LJ048-0083_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/WaveEar/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Noisy/Ours/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Ground truth/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Microphone/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/WaveEar/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Ours/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Ground truth/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Microphone/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/WaveEar/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Ours/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Ground truth/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Microphone/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/WaveEar/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Noisy/Ours/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      </tbody>
-    </table>
-
-  	<h3>(3) Soundproof Scenario</h3>
-        	<p>
-   	 	The speech samples in this section are collected in soundproof scenario or recovered from the data collected in soundproof scenario. 
-		The first five samples are from LJSpeech dataset (i.e., LJ047-0049, LJ047-0128, LJ047-0225, LJ048-0011, LJ048-0083), 
-		and the last three samples are from TIMIT dataset (i.e., FAEM0/SX42, MGXP0/SX97, MTWH1/SX72).
-		</p>
-
-    <table>
-        <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-        </colgroup>
-      <thead>
-        <tr>
-          <th>Source speech (8KHz)</th>
-          <th>Mcirophone</th>
-          <th>WaveEar<sup>[1]</sup></th>
-          <th>Radio2Speech (Ours)</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Microphone/LJ047-0049_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/WaveEar/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ours/LJ047-0049.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Microphone/LJ047-0128_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/WaveEar/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ours/LJ047-0128.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Microphone/LJ047-0225_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/WaveEar/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ours/LJ047-0225.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ground truth/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Microphone/LJ048-0011_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/WaveEar/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ours/LJ048-0011.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ground truth/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Microphone/LJ048-0083_mic.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/WaveEar/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="LJSpeech samples/Soundproof/Ours/LJ048-0083.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Ground truth/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Microphone/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/WaveEar/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Ours/FAEM0/SX42.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Ground truth/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Microphone/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/WaveEar/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Ours/MGXP0/SX97.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      <tr>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Ground truth/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Microphone/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/WaveEar/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-          <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-              <source src="TIMIT samples/Soundproof/Ours/MTWH1/SX72.wav"
-                type="audio/wav"></audio></td>
-      </tr>
-      </tbody>
-    </table>
+                <p>
+                    (3) Soundproof Scenario
+                </p>
+                <p class="caption">
+                    The speech samples in this section are collected in noisy scenario or recovered from the data collected in soundproof scenario.
+                </p>
+                <div class="row" >
+                    <div class="column"><p>Source speech</p></div>
+                    <div class="column"><p>Microphone</p></div>
+                    <div class="column"><p>WaveEar</p></div>
+                    <div class="column"><p>Radio2Speech (Ours)</p></div>
+                </div>
+                <div class="row" >
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0049.wav"
+                        type="audio/wav"></audio></div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Microphone/LJ047-0049_mic.wav"
+                        type="audio/wav"></audio></div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/WaveEar/LJ047-0049.wav"
+                        type="audio/wav"></audio></div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ours/LJ047-0049.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0128.wav"
+                        type="audio/wav"></audio></div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Microphone/LJ047-0128_mic.wav"
+                        type="audio/wav"></audio></div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/WaveEar/LJ047-0128.wav"
+                        type="audio/wav"></audio></div>
+                    <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ours/LJ047-0128.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ground truth/LJ047-0225.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Microphone/LJ047-0225_mic.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/WaveEar/LJ047-0225.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ours/LJ047-0225.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ground truth/LJ048-0011.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Microphone/LJ048-0011_mic.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/WaveEar/LJ048-0011.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ours/LJ048-0011.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ground truth/LJ048-0083.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Microphone/LJ048-0083_mic.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/WaveEar/LJ048-0083.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="LJSpeech samples/Soundproof/Ours/LJ048-0083.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Ground truth/FAEM0/SX42.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Microphone/FAEM0/SX42.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/WaveEar/FAEM0/SX42.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Ours/FAEM0/SX42.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Ground truth/MGXP0/SX97.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Microphone/MGXP0/SX97.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/WaveEar/MGXP0/SX97.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Ours/MGXP0/SX97.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+              <div class="row" >
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Ground truth/MTWH1/SX72.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Microphone/MTWH1/SX72.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/WaveEar/MTWH1/SX72.wav"
+                        type="audio/wav"></audio></div>
+                  <div class="column"><audio controls class="audio-player" preload="metadata" style="width: 80%;">
+                      <source src="TIMIT samples/Soundproof/Ours/MTWH1/SX72.wav"
+                        type="audio/wav"></audio></div>
+              </div>
+            </div>
 
 
-    <h2>Reference</h2>
-    <p></p>
-    <p>[1] C. Xu, Z. Li, H. Zhang, A. Rathore, H. Li, C. Song, K. Wang, and W. Xu. WaveEar: Exploring a mmWave-based Noise-resistant Speech Sensing for Voice-User Interface. In Proceedings of the 17th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys), 2019, pp. 14–26.</p>
-  </div>
 
-</body>
 
+
+<!--            <div class="section-title">Citation</div>-->
+<!--            <div class="bibtex">-->
+<!--            <p>If you found this work influential or helpful for your research, please consider citing</p>-->
+<!--            <pre>-->
+<!--                <code>-->
+<!--                    BibTeX-->
+<!--                </code>-->
+<!--            </pre>-->
+<!--            </div>-->
+        <div class="section-title"> </div>
+            <p align="center">Thanks to <a href="https://paschalidoud.github.io/">Despoina Paschalidou </a>for the website template.</p>
+    </body>
 </html>
