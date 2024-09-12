@@ -1,0 +1,7 @@
+hidden_size: 768
+transformer_num_layers: 12
+mlp_dim: 3072
+num_heads: 12
+transformer_dropout_rate: 0.1
+transformer_attention_dropout_rate: 0.0
+audRate: 8000

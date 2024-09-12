@@ -1,0 +1,5 @@
+radio_nfft: 512
+radio_hop_len: 128
+n_mel: 80
+f_min: 60
+f_max: 4000
