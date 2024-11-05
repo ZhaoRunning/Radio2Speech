@@ -1,8 +1,8 @@
 #!/bin/bash
 
 config=config/train_LJSpeech.yaml
-list_train=/your/path/LJSpeech_train_training.csv
-list_val=/your/path/LJSpeech_val_training.csv
+list_train=examples/LJSpeech_train_training.csv
+list_val=examples/LJSpeech_val_training.csv
 
 tensorboard_dir=/your/path/ckpt
 save_ckpt=/your/path/tensorboard

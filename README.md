@@ -8,32 +8,38 @@
 > 
 
 ## Requirements
-### Feature generation
-To do: Add more details for signal preprocessing
-- Transform audio and radio signals from 16kHz to 8kHz
-- Generate mel-spectrogram with settings in `config/fbank.yaml`
-- Normalization 
+### Download pretrained weights
+Download the pre-trained weights of Transformer layers on ImageNet and the pre-trained model of our TransUnet and Parallel WaveGAN in the following Google Drivelinks
+```
+https://drive.google.com/drive/folders/1WT-MsZ8tlJGILGlDCYs0XNv8eUqv71Zt?usp=sharing
+```
 
 ### Install Parallel WaveGAN
 - Install Parallel WaveGAN from [https://github.com/kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
 
+## Feature generation
+To do: Add more details for signal preprocessing
+- Transform audio and radio signals to 8kHz
+- Generate mel-spectrogram with settings in `config/fbank.yaml`
+- Normalization 
+
+We provide some Mel Spectrogram samples of radio and audio in `example/ljspeech` and the corresponding files of `LJSpeech_train.csv` and `LJSpeech_val.csv` for training and evaluation. You can prepare your own data to make them like the files above.
+
 ## Training
-Download the pre-trained weights of Transformer layers in the following Google Drivelinks, and change the corresponding path in `config/train.yaml` to your own path:
-```
-https://drive.google.com/drive/folders/1WT-MsZ8tlJGILGlDCYs0XNv8eUqv71Zt?usp=sharing
-```
-Change the path in `train.sh` to your own path, then run
+
+1.Prepare the extracted radio-audio Mel Spectrogram and list the path of them as shown in `examples/LJSpeech_train.csv`.
+
+2.Change the `transformer_pretrained_path` in `config/train.yaml` to your own path (pre-trained weights of Transformer layers).
+
+3.Change the path in `train.sh` to your own path, then run
 ```shell script
 ./train.sh
 ```
 
 ## Evaluation
-Download the pre-trained model of our TransUnet and Parallel WaveGAN in the following Google Drivelinks:
-```
-https://drive.google.com/drive/folders/1WT-MsZ8tlJGILGlDCYs0XNv8eUqv71Zt?usp=sharing
-```
-    
-Change the path in `eval.sh` and `examples/LJSpeech_val.csv` to your own path, then run
+1.Prepare the extracted radio-audio Mel Spectrogram and list the path of them as shown in `examples/LJSpeech_val.csv`.
+
+2.Change the `vocoder_ckpt`, `vocoder_config` and  `load_best_model` in `eval.sh`  to your own path (pre-trained model of our TransUnet and Parallel WaveGAN), then run
 ```shell script
 ./eval.sh
 ```

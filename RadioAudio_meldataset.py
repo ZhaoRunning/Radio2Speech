@@ -26,9 +26,7 @@ class Meldataset(Dataset):
         """
 
         self.files = trans_list(input_path)
-        # previously, the unet is trained by the input of [128, 256](F*T),
-        # so here I also choose the time length is 256.
-        self.expmel_len = 80 # unet:64 vit: 224, 80
+        self.expmel_len = 80 
 
     def __len__(self):
         return len(self.files)
