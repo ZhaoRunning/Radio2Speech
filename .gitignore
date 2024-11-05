@@ -6,5 +6,6 @@ LJSpeech_val_calstat.csv
 network_structure.py
 
 .vscode
-.DS_Store
+**/.DS_Store
 __pycache__
+.gitignore

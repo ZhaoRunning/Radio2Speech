@@ -146,19 +146,3 @@ class Meldataset2(Dataset):
 
     def __len__(self):
         return len(self.radioaudio_set)
-
-# if __name__ == '__main__':
-#     parser = ArgParser()
-#     args = parser.parse_train_arguments()
-#     input_path = '/home/zhaorn/radarmic/Radio_audio/RadioAudio_data/csv/LJSpeech_mel/LJSpeech_wavegan_val.csv'
-#
-#     dataset = Meldataset(input_path)
-#     for idx, (audio_melamp, radio_melamp) in enumerate(dataset):
-#
-#         audio_melamp = audio_melamp.numpy().squeeze(0).transpose(1,0)
-#         librosa.display.specshow(audio_melamp, sr=args.radRate, hop_length=128, x_axis='s', y_axis='mel')
-#         plt.colorbar(format='%+2.0f dB')
-#         plt.show()
-#
-#         if idx > 2:
-#             break
