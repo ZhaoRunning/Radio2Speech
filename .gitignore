@@ -1,5 +1,10 @@
 # exclude the following files
 parameter_vis.py
 eval_Radio2Speech.sh
+layer_weights.txt
+LJSpeech_val_calstat.csv
+network_structure.py
+
 .vscode
 .DS_Store
+__pycache__

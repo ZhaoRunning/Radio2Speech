@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # LJSpeech (TransUnet)
 config=config/eval.yaml
 dataset_name=LJSpeech
