@@ -15,7 +15,7 @@ https://drive.google.com/drive/folders/1WT-MsZ8tlJGILGlDCYs0XNv8eUqv71Zt?usp=sha
 ```
 
 ### Install Parallel WaveGAN
-- Install Parallel WaveGAN from [https://github.com/kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
+Install Parallel WaveGAN from [https://github.com/kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
 
 ## Feature generation
 To do: Add more details for signal preprocessing
